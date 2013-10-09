@@ -170,9 +170,9 @@ function! s:_build_module(sid)
   return copy(module)
 endfunction
 
-if 1  " TODO: Check version
+if exists('+regexpengine')
   function! s:_get_functions(sid)
-    let funcs = s:_redir(printf("function /\<SNR>%d_", a:sid))
+    let funcs = s:_redir(printf("function /\\%%#=2^\<SNR>%d_", a:sid))
     let map_pat = '<SNR>' . a:sid . '_\zs\w\+'
     return map(split(funcs, "\n"), 'matchstr(v:val, map_pat)')
   endfunction
