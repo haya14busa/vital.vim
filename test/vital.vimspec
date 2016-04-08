@@ -59,13 +59,13 @@ Describe vital
       End
     End
 
-    " It updates vital modules
-    "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, [], '')
-    "   for name in vitalize_modules
-    "     Assert IsDict(vital#_{g:testplugin_name}#{substitute(name, '\.', '#', 'g')}#import())
-    "   endfor
-    " End
-    "
+    It updates vital modules
+      call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, [], '')
+      for name in vitalize_modules
+        Assert IsDict(vital#_{g:testplugin_name}#{substitute(name, '\.', '#', 'g')}#import())
+      endfor
+    End
+
     " It remove and add vital modules
     "   let V = vital#of(g:testplugin_name)
     "   Assert True(V.exists('Web.JSON'))
