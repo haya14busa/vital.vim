@@ -1,6 +1,7 @@
 Describe vital
 
   Before all
+    verbose echo 'Before all'
     let Vital = vital#vital#of()
     let File = Vital.import('System.File')
     let Filepath = Vital.import('System.Filepath')
@@ -13,6 +14,7 @@ Describe vital
   End
 
   After all
+    verbose echo 'After all'
     let delete_files = []
     let root_and_name = [[g:testplugin_root, g:testplugin_name]]
     let root_and_name += [ Prelude.is_windows() ? [] : [g:symlinkplugin_root, 'symlink']]
@@ -32,6 +34,7 @@ Describe vital
   End
 
   Describe vitalizer#vitalize()
+    verbose echo 'vitalizer#vitalize()'
     It succeeded in vitalizer#vitalize() in Before all
       let vital_data = Filepath.realpath(Filepath.join(
       \   g:testplugin_root, 'autoload', 'vital', g:testplugin_name . '.vital'))
@@ -104,6 +107,7 @@ Describe vital
   End
 
   Describe vital#of()
+    verbose echo 'vital#of()'
     It creates a vital object
       let V = vital#of(g:testplugin_name)
       Assert Equals(type(V), type({}))
@@ -152,6 +156,7 @@ Describe vital
   End
 
   Describe vital#{plugin-name}#of()
+    verbose echo 'vital#{plugin-name}#of()'
     It creates a vital object
       let V = vital#{g:testplugin_name}#of()
       Assert Equals(type(V), type({}))
@@ -188,6 +193,7 @@ Describe vital
   End
 
   Describe vital#{plugin-name}#import()
+    verbose echo 'vital#{plugin-name}#import()'
     It can import modules embedded in {plugin-name}
       let List = vital#{g:testplugin_name}#import('Data.List')
       Assert Equals(List.uniq([1, 1, 2, 3, 1]), [1, 2, 3])
@@ -255,6 +261,7 @@ Describe vital
   End
 
   Describe vital-Vital-object
+    verbose echo 'vital-Vital-object'
     Before all
       let V = vital#{g:testplugin_name}#of()
     End
@@ -330,6 +337,7 @@ Describe vital
     End
 
     Describe .load
+      verbose echo '.load'
       It imports a basic vital module
         let V = vital#{g:testplugin_name}#of()
         Assert Equals(V.load('Data.List'), V)
@@ -405,6 +413,7 @@ Describe vital
     End
 
     Describe .exists()
+      verbose echo '.exists()'
       It returns 1 for existing module
         let V = vital#{g:testplugin_name}#of()
         Assert True(V.exists('Data.List'))
@@ -463,6 +472,7 @@ Describe vital
     End
 
     Describe .search()
+      verbose echo '.search()'
       Before all
         let V = vital#{g:testplugin_name}#of()
       End
@@ -522,6 +532,7 @@ Describe vital
     End
 
     Describe .plugin_name()
+      verbose echo '.plugin_name()'
       Before all
         let V = vital#{g:testplugin_name}#of()
       End
