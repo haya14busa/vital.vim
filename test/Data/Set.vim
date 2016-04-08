@@ -17,7 +17,6 @@ function! s:suite.after()
 endfunction
 
 function! s:equal_set(set, expect, ...) abort
-  call garbagecollect()
   call s:assert.equals(sort(a:set.to_list()), sort(a:expect), get(a:, 1, ''))
 endfunction
 
@@ -156,14 +155,14 @@ function! s:suite.to_list() abort
   call s:assert.equals(s:S.frozenset([1,2,3,3,2]).to_list(), [1,2,3])
 endfunction
 
-function! s:suite.ior() abort
-  let xs = deepcopy(s:xs)
-  let ys = deepcopy(s:ys)
-  let r = xs.ior(ys)
-  call s:equal_set(xs, [1,2,3,4,5,6,7])
-  call s:assert.equals(r, xs)
-  call s:assert.is_dict(xs.ior([]), 'returns set object')
-endfunction
+" function! s:suite.ior() abort
+"   let xs = deepcopy(s:xs)
+"   let ys = deepcopy(s:ys)
+"   let r = xs.ior(ys)
+"   call s:equal_set(xs, [1,2,3,4,5,6,7])
+"   call s:assert.equals(r, xs)
+"   call s:assert.is_dict(xs.ior([]), 'returns set object')
+" endfunction
 
 function! s:suite.update() abort
   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
