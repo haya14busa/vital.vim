@@ -8,7 +8,7 @@ let s:LOADER_FILES = [
 \   'autoload/vital/vital.vim',
 \   'autoload/vital/_vital.vim',
 \ ]
-let s:V = vital#of('vital')
+let s:V = vital#vital#of()
 let s:P = s:V.import('Prelude')
 let s:L = s:V.import('Data.List')
 let s:S = s:V.import('Data.String')
@@ -17,7 +17,6 @@ let s:FP = s:V.import('System.Filepath')
 let s:Mes = s:V.import('Vim.Message')
 let s:Dict = s:V.import('Data.Dict')
 let s:I = s:V.import('Data.String.Interpolation')
-let s:ScriptLocal = s:V.import('Vim.ScriptLocal')
 
 let g:vitalizer#vital_dir =
 \     get(g:, 'vitalizer#vital_dir', expand('<sfile>:h:h:p'))
