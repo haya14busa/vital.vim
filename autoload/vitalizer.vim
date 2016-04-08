@@ -522,6 +522,7 @@ function! vitalizer#vitalize(name, to, modules, hash) abort
     if need_checkout
       call s:git_checkout('-')
     endif
+    call s:V.unload()
   endtry
 endfunction
 
