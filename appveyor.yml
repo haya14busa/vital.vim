@@ -2,7 +2,7 @@ version: '{build}'
 clone_depth: 1
 environment:
   matrix:
-    - VIM_URL: http://files.kaoriya.net/vim/vim74-kaoriya-win64.zip
+    # - VIM_URL: http://files.kaoriya.net/vim/vim74-kaoriya-win64.zip
     - VIM_URL: http://files.kaoriya.net/vim/2011/vim73-kaoriya-win64-20110306.zip
 install:
   - 'cd %APPVEYOR_BUILD_FOLDER%'
