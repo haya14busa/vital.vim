@@ -164,89 +164,89 @@ endfunction
 "   call s:assert.is_dict(xs.ior([]), 'returns set object')
 " endfunction
 
-function! s:suite.update() abort
-  let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
-  let r = xs.update(ys)
-  call s:equal_set(xs, [1,2,3,4,5,6,7])
-  call s:assert.equals(r, 0, 'update returns notiong')
-endfunction
-
-function! s:suite.iand() abort
-  let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
-  let r = xs.iand(ys)
-  call s:equal_set(xs, [3,4,5])
-  call s:assert.equals(r, xs)
-  call s:assert.is_dict(xs.iand([]), 'returns set object')
-endfunction
-
-function! s:suite.intersection_update() abort
-  let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
-  let r = xs.intersection_update(ys)
-  call s:equal_set(xs, [3,4,5])
-  call s:assert.equals(r, 0, 'intersection_update returns notiong')
-endfunction
-
-function! s:suite.ixor() abort
-  let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
-  let r = xs.ixor(ys)
-  call s:equal_set(xs, [1,2,6,7])
-  call s:assert.equals(r, xs)
-  call s:assert.is_dict(xs.ixor([]), 'returns set object')
-endfunction
-
-function! s:suite.symmetric_difference_update() abort
-  let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
-  let r = xs.symmetric_difference_update(ys)
-  call s:equal_set(xs, [1,2,6,7])
-  call s:assert.equals(r, 0, 'symmetric_difference_update returns notiong')
-endfunction
-
-function! s:suite.isub() abort
-  let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
-  let r = xs.isub(ys)
-  call s:equal_set(xs, [1,2])
-  call s:assert.equals(r, xs)
-  call s:assert.is_dict(xs.isub([]), 'returns set object')
-endfunction
-
-function! s:suite.difference_update() abort
-  let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
-  let r = xs.difference_update(ys)
-  call s:equal_set(xs, [1,2])
-  call s:assert.equals(r, 0, 'difference_update returns notiong')
-endfunction
-
-function! s:suite.clear() abort
-  let xs = deepcopy(s:xs)
-  let r = xs.clear()
-  call s:equal_set(xs, [])
-  call s:assert.equals(r, 0, 'clear returns notiong')
-endfunction
-
-function! s:suite.add() abort
-  let xs = deepcopy(s:xs)
-  let r = xs.add(1)
-  call s:equal_set(xs, [1,2,3,4,5])
-  let r2 = xs.add(6)
-  call s:equal_set(xs, [1,2,3,4,5,6])
-  call s:assert.equals(r, 0, 'add returns notiong')
-endfunction
-
-function! s:suite.remove() abort
-  let xs = deepcopy(s:xs)
-  let r = xs.remove(1)
-  call s:equal_set(xs, [2,3,4,5])
-  call s:assert.equals(r, 0, 'remove returns notiong')
-  Throws /vital: Data.Set: the element is not a member/ xs.remove(6)
-endfunction
-
-function! s:suite.discard() abort
-  let xs = deepcopy(s:xs)
-  let r = xs.discard(1)
-  let r2 = xs.discard(6)
-  call s:equal_set(xs, [2,3,4,5])
-  call s:assert.equals(r, 0, 'discard returns notiong')
-endfunction
+" function! s:suite.update() abort
+"   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
+"   let r = xs.update(ys)
+"   call s:equal_set(xs, [1,2,3,4,5,6,7])
+"   call s:assert.equals(r, 0, 'update returns notiong')
+" endfunction
+"
+" function! s:suite.iand() abort
+"   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
+"   let r = xs.iand(ys)
+"   call s:equal_set(xs, [3,4,5])
+"   call s:assert.equals(r, xs)
+"   call s:assert.is_dict(xs.iand([]), 'returns set object')
+" endfunction
+"
+" function! s:suite.intersection_update() abort
+"   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
+"   let r = xs.intersection_update(ys)
+"   call s:equal_set(xs, [3,4,5])
+"   call s:assert.equals(r, 0, 'intersection_update returns notiong')
+" endfunction
+"
+" function! s:suite.ixor() abort
+"   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
+"   let r = xs.ixor(ys)
+"   call s:equal_set(xs, [1,2,6,7])
+"   call s:assert.equals(r, xs)
+"   call s:assert.is_dict(xs.ixor([]), 'returns set object')
+" endfunction
+"
+" function! s:suite.symmetric_difference_update() abort
+"   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
+"   let r = xs.symmetric_difference_update(ys)
+"   call s:equal_set(xs, [1,2,6,7])
+"   call s:assert.equals(r, 0, 'symmetric_difference_update returns notiong')
+" endfunction
+"
+" function! s:suite.isub() abort
+"   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
+"   let r = xs.isub(ys)
+"   call s:equal_set(xs, [1,2])
+"   call s:assert.equals(r, xs)
+"   call s:assert.is_dict(xs.isub([]), 'returns set object')
+" endfunction
+"
+" function! s:suite.difference_update() abort
+"   let [xs, ys] = [deepcopy(s:xs), deepcopy(s:ys)]
+"   let r = xs.difference_update(ys)
+"   call s:equal_set(xs, [1,2])
+"   call s:assert.equals(r, 0, 'difference_update returns notiong')
+" endfunction
+"
+" function! s:suite.clear() abort
+"   let xs = deepcopy(s:xs)
+"   let r = xs.clear()
+"   call s:equal_set(xs, [])
+"   call s:assert.equals(r, 0, 'clear returns notiong')
+" endfunction
+"
+" function! s:suite.add() abort
+"   let xs = deepcopy(s:xs)
+"   let r = xs.add(1)
+"   call s:equal_set(xs, [1,2,3,4,5])
+"   let r2 = xs.add(6)
+"   call s:equal_set(xs, [1,2,3,4,5,6])
+"   call s:assert.equals(r, 0, 'add returns notiong')
+" endfunction
+"
+" function! s:suite.remove() abort
+"   let xs = deepcopy(s:xs)
+"   let r = xs.remove(1)
+"   call s:equal_set(xs, [2,3,4,5])
+"   call s:assert.equals(r, 0, 'remove returns notiong')
+"   Throws /vital: Data.Set: the element is not a member/ xs.remove(6)
+" endfunction
+"
+" function! s:suite.discard() abort
+"   let xs = deepcopy(s:xs)
+"   let r = xs.discard(1)
+"   let r2 = xs.discard(6)
+"   call s:equal_set(xs, [2,3,4,5])
+"   call s:assert.equals(r, 0, 'discard returns notiong')
+" endfunction
 
 function! s:suite.pop() abort
   let xs = s:S.set([1,2])
