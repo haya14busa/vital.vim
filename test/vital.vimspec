@@ -46,19 +46,19 @@ Describe vital
       endfor
     End
 
-    " Context symlink
-    "   It supports symlink plugin
-    "     if Prelude.is_windows()
-    "       Skip "windows doesn't handle symlink"
-    "     endif
-    "     call vitalizer#vitalize('symlink', g:symlinkplugin_root, vitalize_modules, '')
-    "     let V = vital#symlink#of()
-    "     Assert True(V.import('Selfmodule').return1())
-    "     let List = V.import('Data.List')
-    "     Assert Equals(List.uniq([1, 1, 2, 3, 1]), [1, 2, 3])
-    "   End
-    " End
-    "
+    Context symlink
+      It supports symlink plugin
+        if Prelude.is_windows()
+          Skip "windows doesn't handle symlink"
+        endif
+        call vitalizer#vitalize('symlink', g:symlinkplugin_root, vitalize_modules, '')
+        let V = vital#symlink#of()
+        Assert True(V.import('Selfmodule').return1())
+        let List = V.import('Data.List')
+        Assert Equals(List.uniq([1, 1, 2, 3, 1]), [1, 2, 3])
+      End
+    End
+
     " It updates vital modules
     "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, [], '')
     "   for name in vitalize_modules
