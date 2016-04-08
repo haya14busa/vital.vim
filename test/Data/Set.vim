@@ -17,6 +17,7 @@ function! s:suite.after()
 endfunction
 
 function! s:equal_set(set, expect, ...) abort
+  call garbagecollect()
   call s:assert.equals(sort(a:set.to_list()), sort(a:expect), get(a:, 1, ''))
 endfunction
 
