@@ -493,8 +493,8 @@ function! vitalizer#vitalize(name, to, modules, hash) abort
       " Install modules.
       for [from, to] in s:install_module_files(module_files, vital_data.name, a:to)
         call s:copy(from, to)
-        " let raw_module = all_modules[s:file2module_name(to)]
-        " call s:autoloadablize(to, vital_data.name, raw_module)
+        let raw_module = all_modules[s:file2module_name(to)]
+        call s:autoloadablize(to, vital_data.name, raw_module)
       endfor
       let content = [vital_data.name, hash, ''] + installing_modules
       call writefile(content, vital_data.vital_file)
