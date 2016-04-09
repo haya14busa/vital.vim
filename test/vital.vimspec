@@ -57,49 +57,64 @@ Describe vital
     End
 
     It updates vital modules
+      if v:version < 704 && Prelude.is_windows()
+        Skip "re-executing vitalizer#vitalize() in Vim 7.3 on Windows fails unexpectedly"
+      endif
       call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, [], '')
       for name in vitalize_modules
         Assert IsDict(vital#_{g:testplugin_name}#{substitute(name, '\.', '#', 'g')}#import())
       endfor
     End
 
-    " It remove and add vital modules
-    "   let V = vital#of(g:testplugin_name)
-    "   Assert True(V.exists('Web.JSON'))
-    "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Web.JSON'], '')
-    "   let V.unload()
-    "   Assert False(V.exists('Web.JSON'))
-    "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['+Web.JSON'], '')
-    "   let V.unload()
-    "   Assert True(V.exists('Web.JSON'))
-    " End
-    "
-    " It cannot remove dependencies modules
-    "   let V = vital#of(g:testplugin_name)
-    "   Assert True(V.exists('Cyclic2'))
-    "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Cyclic2'], '')
-    "   let V.unload()
-    "   Assert True(V.exists('Cyclic2'))
-    " End
-    "
-    " It cannot remove modules which required from other installing modules
-    "   " Data.LazyList depends Data.List
-    "   let V = vital#of(g:testplugin_name)
-    "   Assert True(V.exists('Data.List'))
-    "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Data.List'], '')
-    "   let V.unload()
-    "   Assert True(V.exists('Data.List'))
-    " End
-    "
-    " It can remove modules which required from other dependencies modules
-    "   " Cyclic2 depends Cyclic1, but Cyclic2 is not specified by :Vitalize
-    "   let V = vital#of(g:testplugin_name)
-    "   Assert True(V.exists('Cyclic1'))
-    "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Cyclic1'], '')
-    "   let V.unload()
-    "   Assert False(V.exists('Cyclic1'))
-    "   call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['+Cyclic1'], '')
-    " End
+    It remove and add vital modules
+      if v:version < 704 && Prelude.is_windows()
+        Skip "re-executing vitalizer#vitalize() in Vim 7.3 on Windows fails unexpectedly"
+      endif
+      let V = vital#of(g:testplugin_name)
+      Assert True(V.exists('Web.JSON'))
+      call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Web.JSON'], '')
+      let V.unload()
+      Assert False(V.exists('Web.JSON'))
+      call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['+Web.JSON'], '')
+      let V.unload()
+      Assert True(V.exists('Web.JSON'))
+    End
+
+    It cannot remove dependencies modules
+      if v:version < 704 && Prelude.is_windows()
+        Skip "re-executing vitalizer#vitalize() in Vim 7.3 on Windows fails unexpectedly"
+      endif
+      let V = vital#of(g:testplugin_name)
+      Assert True(V.exists('Cyclic2'))
+      call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Cyclic2'], '')
+      let V.unload()
+      Assert True(V.exists('Cyclic2'))
+    End
+
+    It cannot remove modules which required from other installing modules
+      if v:version < 704 && Prelude.is_windows()
+        Skip "re-executing vitalizer#vitalize() in Vim 7.3 on Windows fails unexpectedly"
+      endif
+      " Data.LazyList depends Data.List
+      let V = vital#of(g:testplugin_name)
+      Assert True(V.exists('Data.List'))
+      call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Data.List'], '')
+      let V.unload()
+      Assert True(V.exists('Data.List'))
+    End
+
+    It can remove modules which required from other dependencies modules
+      if v:version < 704 && Prelude.is_windows()
+        Skip "re-executing vitalizer#vitalize() in Vim 7.3 on Windows fails unexpectedly"
+      endif
+      " Cyclic2 depends Cyclic1, but Cyclic2 is not specified by :Vitalize
+      let V = vital#of(g:testplugin_name)
+      Assert True(V.exists('Cyclic1'))
+      call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['-Cyclic1'], '')
+      let V.unload()
+      Assert False(V.exists('Cyclic1'))
+      call vitalizer#vitalize(g:testplugin_name, g:testplugin_root, ['+Cyclic1'], '')
+    End
   End
 
   Describe vital#of()
